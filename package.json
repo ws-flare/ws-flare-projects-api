@@ -1,7 +1,7 @@
 {
-  "name": "ws-flare-test-api",
+  "name": "ws-flare-project-api",
   "version": "1.0.0",
-  "description": "ws-flare-test-api",
+  "description": "ws-flare-project-api",
   "keywords": [
     "loopback-application",
     "loopback"

@@ -1,4 +1,4 @@
-import {WsFlareTestApiApplication} from '../..';
+import {WsFlareProjectApiApplication} from '../..';
 import {
   createRestAppClient,
   givenHttpServerConfig,
@@ -15,7 +15,7 @@ export async function setupApplication(): Promise<AppWithClient> {
   // Set port to `PORT` env var or `0`
   config.port = config.port || +(process.env.PORT || 0);
 
-  const app = new WsFlareTestApiApplication({
+  const app = new WsFlareProjectApiApplication({
     rest: config,
   });
 
@@ -28,6 +28,6 @@ export async function setupApplication(): Promise<AppWithClient> {
 }
 
 export interface AppWithClient {
-  app: WsFlareTestApiApplication;
+  app: WsFlareProjectApiApplication;
   client: Client;
 }

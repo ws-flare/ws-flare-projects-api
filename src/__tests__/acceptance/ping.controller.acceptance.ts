@@ -1,9 +1,9 @@
 import {Client, expect} from '@loopback/testlab';
-import {WsFlareTestApiApplication} from '../..';
+import {WsFlareProjectApiApplication} from '../..';
 import {setupApplication} from './test-helper';
 
 describe('PingController', () => {
-  let app: WsFlareTestApiApplication;
+  let app: WsFlareProjectApiApplication;
   let client: Client;
 
   before('setupApplication', async () => {

@@ -1,10 +1,10 @@
-import {WsFlareTestApiApplication} from './application';
+import {WsFlareProjectApiApplication} from './application';
 
 export async function migrate(args: string[]) {
   const existingSchema = args.includes('--rebuild') ? 'drop' : 'alter';
   console.log('Migrating schemas (%s existing schema)', existingSchema);
 
-  const app = new WsFlareTestApiApplication();
+  const app = new WsFlareProjectApiApplication();
   await app.boot();
   await app.migrateSchema({existingSchema});
 

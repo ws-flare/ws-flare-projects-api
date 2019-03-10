@@ -1,10 +1,10 @@
-import {WsFlareTestApiApplication} from './application';
+import {WsFlareProjectApiApplication} from './application';
 import {ApplicationConfig} from '@loopback/core';
 
-export {WsFlareTestApiApplication};
+export {WsFlareProjectApiApplication};
 
 export async function main(options: ApplicationConfig = {}) {
-  const app = new WsFlareTestApiApplication(options);
+  const app = new WsFlareProjectApiApplication(options);
   await app.boot();
   await app.start();
 
