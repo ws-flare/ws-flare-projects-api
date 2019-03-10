@@ -1,27 +1,19 @@
-FROM node:10
+FROM node:10-alpine AS build
 
-# Set to a non-root built-in user `node`
-USER node
+COPY . ./app
 
-# Create app directory (with user `node`)
-RUN mkdir -p /home/node/app
+WORKDIR ./app
 
-WORKDIR /home/node/app
+RUN yarn --production --ignore-engines
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-COPY --chown=node package*.json ./
+RUN rm yarn.lock && rm .npmrc && rm .yarnclean
 
-RUN npm install
+FROM alpine AS prod
 
-# Bundle app source code
-COPY --chown=node . .
+RUN apk add nodejs-lts
 
-RUN npm run build
+COPY --from=build /app .
 
-# Bind to all network interfaces so that it can be mapped to the host OS
-ENV HOST=0.0.0.0 PORT=3000
+EXPOSE 80
 
-EXPOSE ${PORT}
-CMD [ "node", "." ]
+CMD ["node", "."]
