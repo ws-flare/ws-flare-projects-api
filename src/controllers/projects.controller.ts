@@ -19,7 +19,7 @@ import {
 import {Project} from '../models';
 import {ProjectRepository} from '../repositories';
 
-export class ProjectController {
+export class ProjectsController {
   constructor(
     @repository(ProjectRepository)
     public projectRepository : ProjectRepository,
