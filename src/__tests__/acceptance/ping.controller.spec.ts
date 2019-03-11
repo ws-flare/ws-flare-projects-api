@@ -1,21 +1,28 @@
-import {Client, expect} from '@loopback/testlab';
-import {WsFlareProjectApiApplication} from '../..';
-import {setupApplication} from './test-helper';
+import { Client, expect } from '@loopback/testlab';
+import { WsFlareProjectApiApplication } from '../..';
+import { setupApplication, startMysqlContainer } from './test-helper';
 
 describe('PingController', () => {
-  let app: WsFlareProjectApiApplication;
-  let client: Client;
+    let app: WsFlareProjectApiApplication;
+    let client: Client;
+    let container: any;
+    let port: string;
 
-  before('setupApplication', async () => {
-    ({app, client} = await setupApplication());
-  });
+    before('setupApplication', async () => {
+        ({container, port} = await startMysqlContainer());
 
-  after(async () => {
-    await app.stop();
-  });
+        process.env.MYSQL_PORT = port;
 
-  it('invokes GET /ping', async () => {
-    const res = await client.get('/ping?msg=world').expect(200);
-    expect(res.body).to.containEql({greeting: 'Hello from LoopBack'});
-  });
+        ({app, client} = await setupApplication());
+    });
+
+    after(async () => {
+        await app.stop();
+        await container.stop();
+    });
+
+    it('invokes GET /ping', async () => {
+        const res = await client.get('/ping?msg=world').expect(200);
+        expect(res.body).to.containEql({greeting: 'Hello from LoopBack'});
+    });
 });

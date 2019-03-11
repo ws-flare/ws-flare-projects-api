@@ -1,31 +1,31 @@
-import {Client, expect} from '@loopback/testlab';
-import {WsFlareProjectApiApplication} from '../..';
-import {setupApplication} from './test-helper';
-
-const {GenericContainer} = require("testcontainers");
+import { Client, expect } from '@loopback/testlab';
+import { WsFlareProjectApiApplication } from '../..';
+import { setupApplication, startMysqlContainer } from './test-helper';
 
 describe('Projects', () => {
     let app: WsFlareProjectApiApplication;
     let client: Client;
     let container: any;
+    let port: string;
 
     before(async () => {
-        container = await new GenericContainer("mysql")
-            .withEnv("MYSQL_ROOT_PASSWORD", "my-secret-pw")
-            .withExposedPorts(3306)
-            .withStartupTimeout(120000)
-            .start();
+        ({container, port} = await startMysqlContainer());
+
+        process.env.MYSQL_PORT = port;
 
         ({app, client} = await setupApplication());
     });
 
     after(async () => {
-        await app.stop();
         await container.stop();
+        await app.stop();
     });
 
-    it.only('should create a new project', async () => {
+    it('should create a new project', async () => {
         const res = await client.post('/projects').send({userId: 'user1', name: 'project1'}).expect(200);
-        expect(res.body).to.containEql({greeting: 'Hello from LoopBack'});
+
+        expect(res.body.id).not.null();
+        expect(res.body.userId).to.eql('user1');
+        expect(res.body.name).to.eql('project1');
     });
 });
