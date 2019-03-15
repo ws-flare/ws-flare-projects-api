@@ -6,14 +6,12 @@ describe('Projects', () => {
     let app: WsFlareProjectApiApplication;
     let client: Client;
     let container: any;
-    let port: string;
+    let port: number;
 
     before(async () => {
         ({container, port} = await startMysqlContainer());
 
-        process.env.MYSQL_PORT = port;
-
-        ({app, client} = await setupApplication());
+        ({app, client} = await setupApplication(port));
     });
 
     after(async () => {

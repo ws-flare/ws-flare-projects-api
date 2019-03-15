@@ -6,13 +6,14 @@ import { retry } from 'async';
 let getRandomPort = require('random-port-as-promised');
 let {Docker} = require('node-docker-api');
 
-export async function setupApplication(): Promise<AppWithClient> {
+export async function setupApplication(mysqlPort: number): Promise<AppWithClient> {
     const config = givenHttpServerConfig();
 
     config.host = config.host || process.env.HOST || '127.0.0.1';
     config.port = config.port || +(process.env.PORT || 3000);
 
     const app = new WsFlareProjectApiApplication({
+        mysqlPort,
         rest: config,
     });
 
@@ -30,11 +31,10 @@ export interface AppWithClient {
     client: Client;
 }
 
-export async function startMysqlContainer(): Promise<{ container: any, port: string }> {
+export async function startMysqlContainer(): Promise<{ container: any, port: number }> {
     const docker = new Docker({socketPath: '/var/run/docker.sock'});
     const port = await getRandomPort();
 
-    console.log('PORT IS: ' + port);
     const container = await docker.container.create({
         Image: 'mysql:5',
         host: '127.0.0.1',
@@ -76,5 +76,5 @@ export async function startMysqlContainer(): Promise<{ container: any, port: str
 
     console.log('Mysql is up and running');
 
-    return {container, port: `${port}`};
+    return {container, port};
 }

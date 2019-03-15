@@ -19,6 +19,9 @@ export class WsFlareProjectApiApplication extends BootMixin(
         this.bind(RestExplorerBindings.CONFIG).to({
             path: '/explorer',
         });
+        this.bind('mysql.host').to(options.mysqlHost);
+        this.bind('mysql.port').to(options.mysqlPort);
+
         this.component(RestExplorerComponent);
 
         this.projectRoot = __dirname;
