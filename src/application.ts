@@ -1,10 +1,10 @@
-import {BootMixin} from '@loopback/boot';
-import {ApplicationConfig} from '@loopback/core';
-import {RestExplorerBindings, RestExplorerComponent} from '@loopback/rest-explorer';
-import {RepositoryMixin} from '@loopback/repository';
-import {RestApplication} from '@loopback/rest';
-import {ServiceMixin} from '@loopback/service-proxy';
-import {MySequence} from './sequence';
+import { BootMixin } from '@loopback/boot';
+import { ApplicationConfig } from '@loopback/core';
+import { RestExplorerBindings, RestExplorerComponent } from '@loopback/rest-explorer';
+import { RepositoryMixin } from '@loopback/repository';
+import { RestApplication } from '@loopback/rest';
+import { ServiceMixin } from '@loopback/service-proxy';
+import { MySequence } from './sequence';
 
 export class WsFlareProjectApiApplication extends BootMixin(
     ServiceMixin(RepositoryMixin(RestApplication)),
@@ -23,7 +23,6 @@ export class WsFlareProjectApiApplication extends BootMixin(
 
         this.projectRoot = __dirname;
 
-        console.log(this.projectRoot);
         // Customize @loopback/boot Booter Conventions here
         this.bootOptions = {
             controllers: {
