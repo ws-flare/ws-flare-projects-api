@@ -1,7 +1,7 @@
 import { WsFlareProjectApiApplication } from '../..';
 import { createRestAppClient, givenHttpServerConfig, Client } from '@loopback/testlab';
-import * as retry from 'async-retry';
 import * as mysql from 'mysql';
+import { retry } from 'async';
 
 let getRandomPort = require('random-port-as-promised');
 let {Docker} = require('node-docker-api');
@@ -57,13 +57,25 @@ export async function startMysqlContainer(): Promise<{ container: any, port: str
 
     await container.start();
 
-    await retry(async () => {
+    await new Promise((resolve) => {
+        retry({times: 20, interval: 2000}, done => {
+            console.log('Trying to connect to mysql');
+            const connection = mysql.createConnection({
+                host: 'localhost',
+                port: port,
+                user: 'test',
+                password: 'test',
+                database: 'projects'
+            });
 
-        await new Promise(resolve => setTimeout(() => resolve(), 10000));
+            connection.connect();
 
-        console.log('Trying connection to mysql');
-    }, {
-        retries: 20,
+            connection.query('SHOW TABLES', error => {
+                done(error);
+                connection.end();
+            });
+
+        }, () => resolve());
     });
 
     console.log('Mysql is up and running');
