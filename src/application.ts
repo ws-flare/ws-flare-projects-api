@@ -21,6 +21,8 @@ export class WsFlareProjectApiApplication extends BootMixin(
         });
         this.bind('mysql.host').to(options.mysqlHost);
         this.bind('mysql.port').to(options.mysqlPort);
+        this.bind('mysql.username').to(options.mysqlUsername);
+        this.bind('mysql.password').to(options.mysqlPassword);
 
         this.component(RestExplorerComponent);
 

@@ -3,12 +3,14 @@ import { ApplicationConfig } from '@loopback/core';
 
 export { WsFlareProjectApiApplication };
 
-const {MYSQL_HOST, MYSQL_PORT} = process.env;
+const {MYSQL_HOST, MYSQL_PORT, MYSQL_USERNAME, MYSQL_PASSWORD} = process.env;
 
 export async function main(options: ApplicationConfig = {}) {
 
     options.mysqlHost = options.mysqlHost || MYSQL_HOST;
     options.mysqlPort = options.mysqlPort || MYSQL_PORT;
+    options.mysqlUsername = options.mysqlUsername || MYSQL_USERNAME;
+    options.mysqlPassword = options.mysqlPassword || MYSQL_PASSWORD;
 
     const app = new WsFlareProjectApiApplication(options);
     await app.boot();

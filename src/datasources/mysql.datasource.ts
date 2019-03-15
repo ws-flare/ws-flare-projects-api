@@ -11,8 +11,12 @@ export class MysqlDataSource extends juggler.DataSource {
         @inject('mysql.host')
         private host: string,
         @inject('mysql.port')
-        private port: number
+        private port: number,
+        @inject('mysql.username')
+        private user: string,
+        @inject('mysql.password')
+        private password: number
     ) {
-        super({...dsConfig, host, port});
+        super({...dsConfig, host, port, user, password});
     }
 }

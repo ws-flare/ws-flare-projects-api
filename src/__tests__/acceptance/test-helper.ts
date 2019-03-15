@@ -14,6 +14,8 @@ export async function setupApplication(mysqlPort: number): Promise<AppWithClient
 
     const app = new WsFlareProjectApiApplication({
         mysqlPort,
+        mysqlUsername: 'test',
+        mysqlPassword: 'test',
         rest: config,
     });
 
