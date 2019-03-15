@@ -5,10 +5,12 @@ services:
   - docker
 install:
   - yarn --ignore-engines
+  - docker pull mysql:5
+script:
   - yarn test
-  - docker build -t wsflare/ws-flare-project-api:$TRAVIS_BUILD_NUMBER .
+  - docker build -t wsflare/ws-flare-projects-api:$TRAVIS_BUILD_NUMBER .
 deploy:
   - provider: script
-    script: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD" && docker push wsflare/ws-flare-project-api
+    script: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD" && docker push wsflare/ws-flare-projects-api
     on:
       branch: master

@@ -1,1 +1,1 @@
-export * from './couchdb.datasource';
+export * from './mysql.datasource';

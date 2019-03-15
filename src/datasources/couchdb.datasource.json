@@ -1,9 +1,0 @@
-{
-  "name": "couchdb",
-  "connector": "couchdb2",
-  "url": "",
-  "database": "projects",
-  "username": "test",
-  "password": "test",
-  "modelIndex": "loopback__project"
-}
