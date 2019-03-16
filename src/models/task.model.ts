@@ -34,6 +34,11 @@ export class Task extends Entity {
     })
     projectId: string;
 
+    @property({
+        type: 'number',
+        required: true,
+    })
+    totalSimulatedUsers: number;
 
     constructor(data?: Partial<Task>) {
         super(data);

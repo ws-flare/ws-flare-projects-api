@@ -24,7 +24,8 @@ describe('Tasks', () => {
             userId: 'user1',
             name: 'test-name',
             uri: 'ws://localhost',
-            projectId: 'abc123'
+            projectId: 'abc123',
+            totalSimulatedUsers: 20
         }).expect(200);
 
         expect(res.body.id).not.null();
