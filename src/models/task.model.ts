@@ -12,33 +12,39 @@ export class Task extends Entity {
 
     @property({
         type: 'string',
-        required: true,
+        required: true
     })
     userId: string;
 
     @property({
         type: 'string',
-        required: true,
+        required: true
     })
     name: string;
 
     @property({
         type: 'string',
-        required: true,
+        required: true
     })
     uri: string;
 
     @property({
         type: 'string',
-        required: true,
+        required: true
     })
     projectId: string;
 
     @property({
         type: 'number',
-        required: true,
+        required: true
     })
     totalSimulatedUsers: number;
+
+    @property({
+        type: 'number',
+        required: true
+    })
+    runTime: number;
 
     constructor(data?: Partial<Task>) {
         super(data);

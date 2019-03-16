@@ -25,7 +25,8 @@ describe('Tasks', () => {
             name: 'test-name',
             uri: 'ws://localhost',
             projectId: 'abc123',
-            totalSimulatedUsers: 20
+            totalSimulatedUsers: 20,
+            runTime: 1000
         }).expect(200);
 
         expect(res.body.id).not.null();
@@ -33,6 +34,8 @@ describe('Tasks', () => {
         expect(res.body.name).to.eql('test-name');
         expect(res.body.uri).to.eql('ws://localhost');
         expect(res.body.projectId).to.eql('abc123');
+        expect(res.body.totalSimulatedUsers).to.eql(20);
+        expect(res.body.runTime).to.eql(1000);
     });
 
 });
