@@ -46,6 +46,42 @@ export class Task extends Entity {
     })
     runTime: number;
 
+    @property({
+        type: 'string',
+        required: true
+    })
+    cfApi: string;
+
+    @property({
+        type: 'string',
+        required: true
+    })
+    cfUser: string;
+
+    @property({
+        type: 'string',
+        required: true
+    })
+    cfPass: string;
+
+    @property({
+        type: 'string',
+        required: true
+    })
+    cfOrg: string;
+
+    @property({
+        type: 'string',
+        required: true
+    })
+    cfSpace: string;
+
+    @property({
+        type: 'string',
+        required: true
+    })
+    cfApps: string;
+
     constructor(data?: Partial<Task>) {
         super(data);
     }
