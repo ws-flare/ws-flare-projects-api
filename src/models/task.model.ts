@@ -66,6 +66,7 @@ export class Task extends Entity {
 
     @property({
         type: 'string',
+        dataType: "LONGTEXT",
         required: true
     })
     scripts: string;

@@ -30,7 +30,50 @@ describe('Tasks', () => {
             cfOrg: 'org1',
             cfSpace: 'space1',
             cfApps: 'app1,app2,app3',
-            scripts: JSON.stringify([{start: 30}])
+            scripts: JSON.stringify([
+                {
+                    "start": 0,
+                    "timeout": 60,
+                    "totalSimulators": 1000,
+                    "target": "wss://ws-flare-test-server.cfapps.io:4443",
+                    "retryLimit": 10
+                },
+                {
+                    "start": 30,
+                    "timeout": 30,
+                    "totalSimulators": 1000,
+                    "target": "wss://ws-flare-test-server.cfapps.io:4443",
+                    "retryLimit": 10
+                },
+                {
+                    "start": 40,
+                    "timeout": 30,
+                    "totalSimulators": 1000,
+                    "target": "wss://ws-flare-test-server.cfapps.io:4443",
+                    "retryLimit": 10
+                },
+                {
+                    "start": 0,
+                    "timeout": 60,
+                    "totalSimulators": 1000,
+                    "target": "wss://ws-flare-test-server.cfapps.io:4443",
+                    "retryLimit": 10
+                },
+                {
+                    "start": 30,
+                    "timeout": 30,
+                    "totalSimulators": 1000,
+                    "target": "wss://ws-flare-test-server.cfapps.io:4443",
+                    "retryLimit": 10
+                },
+                {
+                    "start": 40,
+                    "timeout": 30,
+                    "totalSimulators": 1000,
+                    "target": "wss://ws-flare-test-server.cfapps.io:4443",
+                    "retryLimit": 10
+                }
+            ])
         }).expect(200);
 
         expect(res.body.id).not.null();
@@ -43,7 +86,50 @@ describe('Tasks', () => {
         expect(res.body.cfOrg).to.eql('org1');
         expect(res.body.cfSpace).to.eql('space1');
         expect(res.body.cfApps).to.eql('app1,app2,app3');
-        expect(JSON.parse(res.body.scripts)).to.eql([{start: 30}]);
+        expect(JSON.parse(res.body.scripts)).to.eql([
+            {
+                "start": 0,
+                "timeout": 60,
+                "totalSimulators": 1000,
+                "target": "wss://ws-flare-test-server.cfapps.io:4443",
+                "retryLimit": 10
+            },
+            {
+                "start": 30,
+                "timeout": 30,
+                "totalSimulators": 1000,
+                "target": "wss://ws-flare-test-server.cfapps.io:4443",
+                "retryLimit": 10
+            },
+            {
+                "start": 40,
+                "timeout": 30,
+                "totalSimulators": 1000,
+                "target": "wss://ws-flare-test-server.cfapps.io:4443",
+                "retryLimit": 10
+            },
+            {
+                "start": 0,
+                "timeout": 60,
+                "totalSimulators": 1000,
+                "target": "wss://ws-flare-test-server.cfapps.io:4443",
+                "retryLimit": 10
+            },
+            {
+                "start": 30,
+                "timeout": 30,
+                "totalSimulators": 1000,
+                "target": "wss://ws-flare-test-server.cfapps.io:4443",
+                "retryLimit": 10
+            },
+            {
+                "start": 40,
+                "timeout": 30,
+                "totalSimulators": 1000,
+                "target": "wss://ws-flare-test-server.cfapps.io:4443",
+                "retryLimit": 10
+            }
+        ]);
     });
 
 });
