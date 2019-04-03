@@ -26,25 +26,7 @@ export class Task extends Entity {
         type: 'string',
         required: true
     })
-    uri: string;
-
-    @property({
-        type: 'string',
-        required: true
-    })
     projectId: string;
-
-    @property({
-        type: 'number',
-        required: true
-    })
-    totalSimulatedUsers: number;
-
-    @property({
-        type: 'number',
-        required: true
-    })
-    runTime: number;
 
     @property({
         type: 'string',
@@ -81,6 +63,12 @@ export class Task extends Entity {
         required: true
     })
     cfApps: string;
+
+    @property({
+        type: 'string',
+        required: true
+    })
+    scripts: string;
 
     constructor(data?: Partial<Task>) {
         super(data);
