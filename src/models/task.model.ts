@@ -71,6 +71,12 @@ export class Task extends Entity {
     })
     scripts: string;
 
+    @property({
+        type: 'number',
+        required: true
+    })
+    successThreshold: number;
+
     constructor(data?: Partial<Task>) {
         super(data);
     }

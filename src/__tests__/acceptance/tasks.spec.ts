@@ -1,6 +1,6 @@
-import { Client, expect } from '@loopback/testlab';
-import { WsFlareProjectApiApplication } from '../..';
-import { setupApplication, startMysqlContainer } from './test-helper';
+import {Client, expect} from '@loopback/testlab';
+import {WsFlareProjectApiApplication} from '../..';
+import {setupApplication, startMysqlContainer} from './test-helper';
 
 describe('Tasks', () => {
     let app: WsFlareProjectApiApplication;
@@ -30,6 +30,7 @@ describe('Tasks', () => {
             cfOrg: 'org1',
             cfSpace: 'space1',
             cfApps: 'app1,app2,app3',
+            successThreshold: 80,
             scripts: JSON.stringify([
                 {
                     "start": 0,
@@ -86,6 +87,7 @@ describe('Tasks', () => {
         expect(res.body.cfOrg).to.eql('org1');
         expect(res.body.cfSpace).to.eql('space1');
         expect(res.body.cfApps).to.eql('app1,app2,app3');
+        expect(res.body.successThreshold).to.eql(80);
         expect(JSON.parse(res.body.scripts)).to.eql([
             {
                 "start": 0,
