@@ -2,6 +2,9 @@ import {Client, expect} from '@loopback/testlab';
 import {WsFlareProjectApiApplication} from '../..';
 import {setupApplication, startMysqlContainer} from './test-helper';
 
+/**
+ * Tests for tasks related functionality
+ */
 describe('Tasks', () => {
     let app: WsFlareProjectApiApplication;
     let client: Client;

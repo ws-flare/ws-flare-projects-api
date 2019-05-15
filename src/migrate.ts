@@ -1,5 +1,9 @@
 import {WsFlareProjectApiApplication} from './application';
 
+/**
+ * Auto creates tables in MySQL for the application
+ * @param args - arguments
+ */
 export async function migrate(args: string[]) {
   const existingSchema = args.includes('--rebuild') ? 'drop' : 'alter';
   console.log('Migrating schemas (%s existing schema)', existingSchema);

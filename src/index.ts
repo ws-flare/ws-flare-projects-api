@@ -3,8 +3,13 @@ import { ApplicationConfig } from '@loopback/core';
 
 export { WsFlareProjectApiApplication };
 
+// Read MySQL data from environment variables
 const {MYSQL_HOST, MYSQL_PORT, MYSQL_USERNAME, MYSQL_PASSWORD} = process.env;
 
+/**
+ * Main entry point for starting the server
+ * @param options
+ */
 export async function main(options: ApplicationConfig = {}) {
 
     options.mysqlHost = options.mysqlHost || MYSQL_HOST;
